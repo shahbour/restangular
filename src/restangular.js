@@ -13,7 +13,7 @@ restangular.provider('Restangular', function() {
      */
     var safeMethods= ['get', 'head', 'options', 'trace', 'getlist'];
     config.isSafe = function(operation) {
-      return _.contains(safeMethods, operation.toLowerCase());
+      return _.includes(safeMethods, operation.toLowerCase());
     };
 
     var absolutePattern = /^https?:\/\//i;
@@ -390,7 +390,7 @@ restangular.provider('Restangular', function() {
     object.setParentless = function(values) {
       if (_.isArray(values)) {
         config.shouldSaveParent = function(route) {
-          return !_.contains(values, route);
+          return !_.includes(values, route);
         };
       } else if (_.isBoolean(values)) {
         config.shouldSaveParent = function() {
@@ -1307,7 +1307,7 @@ restangular.provider('Restangular', function() {
         serv.getList = _.bind(collection.getList, collection);
 
         for (var prop in collection) {
-          if (collection.hasOwnProperty(prop) && _.isFunction(collection[prop]) && !_.contains(knownCollectionMethods, prop)) {
+          if (collection.hasOwnProperty(prop) && _.isFunction(collection[prop]) && !_.includes(knownCollectionMethods, prop)) {
             serv[prop] = _.bind(collection[prop], collection);
           }
         }
